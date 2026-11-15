@@ -151,9 +151,13 @@ export default function DigitalMenu() {
         shimmer={restaurantConfig!.headerShimmer}
         nameColor={restaurantConfig!.headerNameColor || undefined}
         taglineColor={restaurantConfig!.headerTaglineColor || undefined}
+        nameGradientFrom={restaurantConfig!.headerNameGradientFrom || undefined}
+        nameGradientTo={restaurantConfig!.headerNameGradientTo || undefined}
+        nameGradientAngle={restaurantConfig!.headerNameGradientAngle ?? 120}
         showLogo={restaurantConfig!.showLogo ?? true}
         logoSize={restaurantConfig!.logoSize || "auto"}
-        backgroundPosition={restaurantConfig!.headerBackgroundPosition || "center"}
+        backgroundPositionX={restaurantConfig!.headerBackgroundPositionX ?? 50}
+        backgroundPositionY={restaurantConfig!.headerBackgroundPositionY ?? 50}
         backgroundZoom={restaurantConfig!.headerBackgroundZoom ?? 1}
         dividerStyle={restaurantConfig!.headerDividerStyle || "line"}
         spacing={restaurantConfig!.headerSpacing || "default"}

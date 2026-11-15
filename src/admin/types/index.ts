@@ -68,9 +68,13 @@ export interface Restaurant {
   headerShimmer?: boolean;
   headerNameColor?: string | null;
   headerTaglineColor?: string | null;
+  headerNameGradientFrom?: string | null;
+  headerNameGradientTo?: string | null;
+  headerNameGradientAngle?: number;
   showLogo?: boolean;
   logoSize?: 'auto' | 'sm' | 'md' | 'lg';
-  headerBackgroundPosition?: 'top' | 'center' | 'bottom' | 'left' | 'right';
+  headerBackgroundPositionX?: number;
+  headerBackgroundPositionY?: number;
   headerBackgroundZoom?: number;
   headerDividerStyle?: 'line' | 'dots' | 'diamond' | 'none';
   headerSpacing?: 'tight' | 'default' | 'loose';

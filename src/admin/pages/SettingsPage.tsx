@@ -307,19 +307,16 @@ export function SettingsPage() {
               </select>
             </Field>
             <div className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2">
-              <Field label="Photo Position">
-                <select value={form.headerBackgroundPosition || 'center'} onChange={(e) => update('headerBackgroundPosition', e.target.value as Restaurant['headerBackgroundPosition'])} className={inputStyles} disabled={!showPhoto}>
-                  <option value="center">Center</option>
-                  <option value="top">Top</option>
-                  <option value="bottom">Bottom</option>
-                  <option value="left">Left</option>
-                  <option value="right">Right</option>
-                </select>
+              <Field label={`Photo Focus X — ${Math.round(form.headerBackgroundPositionX ?? 50)}%`}>
+                <RangeInput min={0} max={100} step={1} value={form.headerBackgroundPositionX ?? 50} onChange={(v) => update('headerBackgroundPositionX', v)} disabled={!showPhoto} />
               </Field>
-              <Field label={`Photo Zoom — ${Math.round((form.headerBackgroundZoom ?? 1) * 100)}%`}>
-                <RangeInput min={1} max={2} step={0.05} value={form.headerBackgroundZoom ?? 1} onChange={(v) => update('headerBackgroundZoom', v)} disabled={!showPhoto} />
+              <Field label={`Photo Focus Y — ${Math.round(form.headerBackgroundPositionY ?? 50)}%`}>
+                <RangeInput min={0} max={100} step={1} value={form.headerBackgroundPositionY ?? 50} onChange={(v) => update('headerBackgroundPositionY', v)} disabled={!showPhoto} />
               </Field>
             </div>
+            <Field label={`Photo Zoom — ${Math.round((form.headerBackgroundZoom ?? 1) * 100)}%`}>
+              <RangeInput min={1} max={2} step={0.05} value={form.headerBackgroundZoom ?? 1} onChange={(v) => update('headerBackgroundZoom', v)} disabled={!showPhoto} />
+            </Field>
 
             <Divider />
 
@@ -330,6 +327,17 @@ export function SettingsPage() {
               <ToggleRow label="Uppercase tagline" checked={form.headerUppercaseTagline ?? true} onChange={(v) => update('headerUppercaseTagline', v)} />
               <ToggleRow label="Shimmer animation" checked={form.headerShimmer ?? true} onChange={(v) => update('headerShimmer', v)} />
             </div>
+            {form.headerNameGradient !== false && (
+              <div className="space-y-4 rounded-lg border border-dashed border-gray-200 p-3">
+                <div className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2">
+                  <ColorField label="Gradient Start" value={form.headerNameGradientFrom || form.headerNameColor || form.headerText || '#ffffff'} onChange={(v) => update('headerNameGradientFrom', v)} />
+                  <ColorField label="Gradient End" value={form.headerNameGradientTo || form.accentColor || '#0ea5e9'} onChange={(v) => update('headerNameGradientTo', v)} />
+                </div>
+                <Field label={`Gradient Angle — ${form.headerNameGradientAngle ?? 120}°`}>
+                  <RangeInput min={0} max={360} step={5} value={form.headerNameGradientAngle ?? 120} onChange={(v) => update('headerNameGradientAngle', v)} />
+                </Field>
+              </div>
+            )}
             {form.headerAccentPanel !== false && (
               <Field label={`Accent Panel Intensity — ${Math.round((form.headerPanelIntensity ?? 1) * 100)}%`}>
                 <RangeInput min={0} max={1} step={0.05} value={form.headerPanelIntensity ?? 1} onChange={(v) => update('headerPanelIntensity', v)} />
